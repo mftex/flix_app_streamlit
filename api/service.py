@@ -19,4 +19,3 @@ class Auth:
         if auth_response.status_code == 200:
             return auth_response.json()
         return {'error': 'Authentication failed', 'status_code': auth_response.status_code}
-
