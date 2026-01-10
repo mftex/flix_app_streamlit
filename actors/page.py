@@ -1,4 +1,5 @@
 from actors.service import ActorService
+from datetime import datetime
 import pandas as pd
 import streamlit as st
 from st_aggrid import AgGrid
@@ -25,8 +26,18 @@ def show_actors():
 
     st.title('Cadastrar novo ator')
     name = st.text_input('Nome do ator')
-    birthday = st.date_input('Data de nascimento')
-    nationality = st.selectbox('Nacionalidade', options=['USA', 'BR'])
+    birthday = st.date_input(
+        label='Data de nascimento',
+        value = datetime.today(),
+        min_value=datetime(1900, 1, 1).date(),
+        max_value=datetime.today(),
+        format='DD/MM/YYYY',
+    )
+    nationality_dropdown = ['USA', 'BR']
+    nationality = st.selectbox(
+        label='Nacionalidade', 
+        options=nationality_dropdown
+    )
     
     if st.button('Cadastrar'):
         result = actor_service.create_actor(name, birthday, nationality)
