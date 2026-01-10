@@ -4,7 +4,7 @@ import streamlit as st
 
 
 class ReviewRepository:
-    
+
     def __init__(self):
         self.__base_url = 'https://mftex.pythonanywhere.com/api/v1'
         self.__reviews_url = f'{self.__base_url}/reviews/'
@@ -23,16 +23,15 @@ class ReviewRepository:
         if response.status_code == 401:
             logout()
             return None
-        
+
         raise Exception(f'Erro ao obter dados da API. Status code: {response.status_code}')
-    
+
     def create_review(self, review):
         response = requests.post(
             self.__reviews_url,
             headers=self.__headers,
             json=review,
         )
-        print(response.status_code)
 
         if response.status_code == 201:
             return response.json()

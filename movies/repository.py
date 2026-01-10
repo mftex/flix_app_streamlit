@@ -2,6 +2,7 @@ from login.service import logout
 import requests
 import streamlit as st
 
+
 class MovieRepository:
 
     def __init__(self):
@@ -25,9 +26,9 @@ class MovieRepository:
         if response.status_code == 401:
             logout()
             return None
-        
+
         raise Exception(f"Erro ao obter dados da API. Status code: {response.status_code}")
-        
+
     def create_movie(self, movie):
         response = requests.post(
             self.__movies_url,
@@ -42,13 +43,13 @@ class MovieRepository:
         if response.status_code == 401:
             logout()
             return None
-        
+
         raise Exception(f"Erro ao obter dados da API. Status code: {response.status_code}")
-    
+
     def get_movie_stats(self):
         response = requests.get(
-           f'{self.__movies_url}stats/',
-           headers=self.__headers,
+            f'{self.__movies_url}stats/',
+            headers=self.__headers,
         )
         if response.status_code == 200:
             return response.json()
@@ -57,5 +58,5 @@ class MovieRepository:
         if response.status_code == 401:
             logout()
             return None
-        
+
         raise Exception(f"Erro ao obter dados da API. Status code: {response.status_code}")

@@ -1,8 +1,9 @@
 from reviews.repository import ReviewRepository
 import streamlit as st
 
+
 class ReviewService:
-    
+
     def __init__(self):
         self.review_repository = ReviewRepository()
 
@@ -12,7 +13,7 @@ class ReviewService:
         reviews = self.review_repository.get_reviews()
         st.session_state.reviews = reviews
         return reviews
-    
+
     def create_reviews(self, movie, stars, comment):
         review = dict(
             movie=movie,

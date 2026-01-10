@@ -5,7 +5,6 @@ import streamlit as st
 from st_aggrid import AgGrid
 
 
-
 def show_actors():
     actor_service = ActorService()
     actors = actor_service.get_actors()
@@ -13,10 +12,12 @@ def show_actors():
     if actors and 'Sem permissões' not in str(actors):
         st.write("Lista de Atores:")
         actors_df = pd.json_normalize(actors)
-        AgGrid(actors_df,
+        AgGrid(
+            actors_df,
             reload_data=True,
             key='actors_grid',
-            show_toolbar=True,)
+            show_toolbar=True,
+        )
     elif 'Sem permissões' in str(actors):
         st.warning('Você não tem permissão para visualizar os atores.')
     else:
@@ -28,17 +29,16 @@ def show_actors():
     name = st.text_input('Nome do ator')
     birthday = st.date_input(
         label='Data de nascimento',
-        value = datetime.today(),
+        value=datetime.today(),
         min_value=datetime(1900, 1, 1).date(),
         max_value=datetime.today(),
         format='DD/MM/YYYY',
     )
     nationality_dropdown = ['USA', 'BR']
     nationality = st.selectbox(
-        label='Nacionalidade', 
+        label='Nacionalidade',
         options=nationality_dropdown
     )
-    
     if st.button('Cadastrar'):
         result = actor_service.create_actor(name, birthday, nationality)
 

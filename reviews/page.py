@@ -4,6 +4,7 @@ from st_aggrid import AgGrid
 from reviews.service import ReviewService
 from movies.service import MovieService
 
+
 def show_reviews():
     review_service = ReviewService()
     reviews = review_service.get_reviews()
@@ -12,11 +13,13 @@ def show_reviews():
         st.write("Lista de Avaliações:")
 
         reviews_df = pd.json_normalize(reviews)
-        
-        AgGrid(reviews_df,
+
+        AgGrid(
+            reviews_df,
             reload_data=True,
             key='reviews_grid',
-            show_toolbar=True,)
+            show_toolbar=True,
+        )
     else:
         st.warning('Nenhuma avaliação encontrada.')
 

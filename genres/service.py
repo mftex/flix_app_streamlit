@@ -1,6 +1,7 @@
 from genres.repository import GenreRepository
 import streamlit as st
 
+
 class GenreService:
 
     def __init__(self):
@@ -13,11 +14,11 @@ class GenreService:
         genres = self.genre_repository.get_genres()
         st.session_state.genres = genres
         return genres
-    
+
     def create_genre(self, name):
         genre = dict(
-            name = name,
+            name=name,
         )
-        new_genre = self.genre_repository.create_genre(genre) 
+        new_genre = self.genre_repository.create_genre(genre)
         st.session_state.genres.append(new_genre)
         return new_genre

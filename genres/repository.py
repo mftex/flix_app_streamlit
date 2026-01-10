@@ -15,7 +15,7 @@ class GenreRepository:
 
     def get_genres(self):
         response = requests.get(
-            self.__genres_url, 
+            self.__genres_url,
             headers=self.__headers,
             verify=False
         )
@@ -27,7 +27,7 @@ class GenreRepository:
         if response.status_code == 403:
             return Exception("Sem permissões")
         raise Exception(f"Erro ao obter dados da API. Status code: {response.status_code}")
-    
+
     def create_genre(self, genre):
         response = requests.post(
             self.__genres_url,
@@ -37,7 +37,7 @@ class GenreRepository:
         )
         if response.status_code == 201:
             return response.json()
-            
+
         if response.status_code == 401:
             logout()
             return None

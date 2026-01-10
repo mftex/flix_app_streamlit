@@ -15,7 +15,7 @@ class ActorRepository:
 
     def get_actors(self):
         response = requests.get(
-            self.__actors_url, 
+            self.__actors_url,
             headers=self.__headers,
             verify=False
         )
@@ -27,7 +27,7 @@ class ActorRepository:
         if response.status_code == 403:
             raise Exception("Sem permissões")
         raise Exception(f"Erro ao obter dados da API. Status code: {response.status_code}")
-    
+
     def create_actor(self, actor):
         response = requests.post(
             self.__actors_url,
@@ -38,11 +38,11 @@ class ActorRepository:
         if response.status_code == 201:
             print(response.json())
             return response.json()
-            
+
         if response.status_code == 401:
             logout()
             return None
-        
+
         if response.status_code == 403:
             return {'status': 'unauthorized'}
 

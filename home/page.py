@@ -2,10 +2,10 @@ from movies.service import MovieService
 import plotly.express as px
 import streamlit as st
 
+
 def show_home():
     movie_service = MovieService()
     movie_stats = movie_service.get_movie_stats()
-
 
     st.title('Estatísticas de Filmes')
 
@@ -30,8 +30,3 @@ def show_home():
 
     st.subheader('Média geral de estrelas nas Avaliações: ')
     st.write(movie_stats['average_stars'])
-
-    
-
-    
-

@@ -17,10 +17,11 @@ def show_movies():
 
         movies_df = pd.json_normalize(movies)
         movies_df = movies_df.drop(columns=['actors', 'genre.id'])
-        AgGrid(movies_df,
-           reload_data=True,
-           key='movies_grid',
-           show_toolbar=True,
+        AgGrid(
+            movies_df,
+            reload_data=True,
+            key='movies_grid',
+            show_toolbar=True,
         )
     else:
         st.warning('Nenhum filme encontrado')

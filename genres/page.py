@@ -4,8 +4,6 @@ from st_aggrid import AgGrid
 from genres.service import GenreService
 
 
-
-
 def show_genres():
     genre_service = GenreService()
     genres = genre_service.get_genres()
@@ -13,10 +11,12 @@ def show_genres():
     if genres and 'Sem permissões' not in str(genres):
         st.write("Lista de Gêneros:")
         genres_df = pd.json_normalize(genres)
-        AgGrid(genres_df,
+        AgGrid(
+            genres_df,
             reload_data=True,
             key='genres_grid',
-            show_toolbar=True,)
+            show_toolbar=True,
+        )
     elif 'Sem permissões' in str(genres):
         st.warning('Você não tem permissão para visualizar os gêneros.')
     else:
@@ -32,4 +32,3 @@ def show_genres():
             st.rerun()
         else:
             st.error('Erro ao cadastrar o gênero.')
-   
