@@ -42,7 +42,7 @@ def show_actors():
     if st.button('Cadastrar'):
         result = actor_service.create_actor(name, birthday, nationality)
 
-        if result['status'] == 'success':
+        if 'name' in result:
             st.rerun()
         if result['status'] == 'unauthorized':
             st.warning('Você não tem permissão para cadastrar um novo ator. Caso necessário, solicite ao administrador do sistema.')

@@ -36,7 +36,8 @@ class ActorRepository:
             verify=False
         )
         if response.status_code == 201:
-            return {'status': 'success'}
+            print(response.json())
+            return response.json()
             
         if response.status_code == 401:
             logout()
